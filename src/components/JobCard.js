@@ -10,10 +10,8 @@ const JobCard = ({ job }) => {
   };
 
   return (
-    <>
-   
-    <Box style={{ display: 'flex', flexDirection: 'row' }}>
-      <Card>
+    <Box sx={{display:"flex", flexDirection:"row",flexWrap:'wrap'}}>
+      <Card sx={{ width: "305px", marginRight: 2 }}>
         <CardContent>
           <Typography variant="h5" component="h2">
             {job.jbTitle}
@@ -21,9 +19,32 @@ const JobCard = ({ job }) => {
           <Typography color="textSecondary" gutterBottom>
             {job.jdLink} - {job.location}
           </Typography>
-          <Typography component="p">
+          {/* <Typography style={{width:"0px"}} component="p">
             {job.jobDetailsFromCompany}
+          </Typography> */}
+          <Typography color="textSecondary" gutterBottom>
+            Experience Required: {job.jbExp}
           </Typography>
+          <Button variant="contained" color="primary">
+            Apply
+          </Button>
+          {/* Example of a favorite button */}
+          <Button variant="outlined" color="secondary" onClick={handleFavorite}>
+            Favorite
+          </Button>
+        </CardContent>
+      </Card>
+      <Card sx={{ width: "305px", marginRight: 2 }}>
+        <CardContent>
+          <Typography variant="h5" component="h2">
+            {job.jbTitle}
+          </Typography>
+          <Typography color="textSecondary" gutterBottom>
+            {job.jdLink} - {job.location}
+          </Typography>
+          {/* <Typography style={{width:"0px"}} component="p">
+            {job.jobDetailsFromCompany}
+          </Typography> */}
           <Typography color="textSecondary" gutterBottom>
             Experience Required: {job.jbExp}
           </Typography>
@@ -37,7 +58,6 @@ const JobCard = ({ job }) => {
         </CardContent>
       </Card>
     </Box>
-    </>
   );
 };
 

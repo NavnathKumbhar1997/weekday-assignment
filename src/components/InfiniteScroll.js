@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import JobCard from '../components/JobCard';
+import { Card, CardContent, Typography, Button, Box } from '@material-ui/core';
+
 
 const InfiniteScroll = () => {
   const [jobs, setJobs] = useState([]);
@@ -75,12 +77,37 @@ const InfiniteScroll = () => {
   }, [isLoading]); // Run effect whenever isLoading state changes
 
   return (
-    <div>
+    <>
       {jobs.map((job, index) => (
-        <JobCard key={index} job={job} />
+        <Box sx={{display:"flex", flexDirection:"row",flexWrap:'wrap',mb:'10px'}}>
+        <Card sx={{ width: "245"}}>
+          <CardContent>
+            <Typography variant="h5" component="h2">
+              {job.jbTitle}
+            </Typography>
+            <Typography color="textSecondary" gutterBottom>
+              {job.jdLink} - {job.location}
+            </Typography>
+            <Typography component="p">
+                {job.showMore ? job.jobDetailsFromCompany : `${job.jobDetailsFromCompany.slice(0, 50)}...`}
+              </Typography>
+            <Typography color="textSecondary" gutterBottom> 
+              Experience Required: {job.jbExp}
+            </Typography>
+            <Button variant="contained" color="primary">
+              Apply
+            </Button>
+            {/* Example of a favorite button */}
+            <Button variant="outlined" color="secondary">
+              Favorite
+            </Button>
+          </CardContent>
+        </Card>
+        
+      </Box>
       ))}
       {isLoading && <p>Loading...</p>}
-    </div>
+    </>
   );
 };
 
